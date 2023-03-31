@@ -1,5 +1,7 @@
 #!/bin/sh /etc/rc.common
 
+#This belongs here: /etc/init.d/mac-clone
+
 START=99
 
 start() {
