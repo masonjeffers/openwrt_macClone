@@ -1,0 +1,15 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+start() {
+    WAN_MAC=`ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
+    LAN_MAC=`arp | awk '/br-lan/{print $4}'`
+    uci set network.wan.macaddr="$LAN_MAC"
+    uci commit network
+
+    ifconfig eth0 down
+    ifconfig eth0 hw ether "$LAN_MAC"
+    ifconfig eth0 up
+}
+
