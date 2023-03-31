@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# This belongs here /etc/hotplug.d/iface/99-mac-clone
+# Check if the interface is the WAN interface
+if [ "$INTERFACE" == "eth0" ]; then
+  # Run the MAC cloning script
+  /etc/init.d/mac-clone
+fi
+
